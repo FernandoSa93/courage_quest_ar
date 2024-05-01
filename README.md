@@ -4,7 +4,7 @@ Siga este passo-a-passo para conseguir executar e testar este projeto.
 
 ## 1) NodeJS
 
-Instalar a versão LTS do [NodeJS]([https://nodejs.org/en/download]).
+Instalar a versão LTS do [NodeJS](https://nodejs.org/en/download).
 
 
 ## 2) Dependências
@@ -31,5 +31,5 @@ Usar essa url no celular para realizar os testes em AR com a câmera.
 
 ## 4) Testes
 
-Até o momento, foi implementado o exemplo de multi-target do site da [MindAR]([https://nodejs.org/en/download]), utilizando o modelo do Raccoon.
+Até o momento, foi implementado o exemplo de multi-target do site da [MindAR](https://nodejs.org/en/download), utilizando o modelo do Raccoon.
 Acessar o site deles e usar o card do Raccoon para testes.
