@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Como executar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Siga este passo-a-passo para conseguir executar e testar este projeto.
 
-## Available Scripts
+## 1) NodeJS
 
-In the project directory, you can run:
+Instalar a versão LTS do [NodeJS]([https://nodejs.org/en/download]).
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 2) Dependências
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Abrir o cmd como administrador e acessar a pasta do projeto com o seguinte comando:
+### `cd caminho`
 
-### `npm test`
+Executar o seguinte comando para instalar as dependências do projeto:
+### `npm install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Durante os testes, foi identificado que a biblioteca do threeJS foi atualizada e a do MindAR não atualizou o nome das funções do three que ele usa e por conta disso ocorre um erro.
+Para solucionar este problema, é preciso instalar uma versão anterior do three com o seguinte comando:
+### `npm install three@0.151.0`
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 3) Executar projeto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para executar o projeto, use o seguinte comando dentro da pasta:
+### `set HTTPS=true&&npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Uma página do navegador padrão será aberta quando o projeto tiver sido compilado e na tela do cmd estará escrito uma url para acesso local, que será formada por: https://IP_do_computador:3000.
+Usar essa url no celular para realizar os testes em AR com a câmera.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 4) Testes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Até o momento, foi implementado o exemplo de multi-target do site da [MindAR]([https://nodejs.org/en/download]), utilizando o modelo do Raccoon.
+Acessar o site deles e usar o card do Raccoon para testes.
