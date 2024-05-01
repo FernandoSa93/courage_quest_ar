@@ -25,7 +25,7 @@ Para solucionar este problema, é preciso instalar uma versão anterior do three
 Para executar o projeto, use o seguinte comando dentro da pasta:
 ### `set HTTPS=true&&npm start`
 
-Uma página do navegador padrão será aberta quando o projeto tiver sido compilado e na tela do cmd estará escrito uma url para acesso local, que será formada por: https://IP_do_computador:3000.
+Uma página do navegador padrão será aberta quando o projeto tiver sido compilado e na tela do cmd estará escrito uma url para acesso em LAN, escrito "On your network", que será formada por: https://IP_do_computador:3000.
 Usar essa url no celular para realizar os testes em AR com a câmera.
 
 
