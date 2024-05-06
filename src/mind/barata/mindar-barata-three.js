@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { MindARThree } from 'mind-ar/dist/mindar-image-three.prod.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-import Marcador from './assets/targets.mind';
-import Modelo from './assets/scene.gltf';
+import Marcador from './assets/band.mind';
+import Modelo from './assets/raccoon/scene.gltf';
 
 const ARComponent = () => {
   const containerRef = useRef(null);
@@ -26,6 +26,7 @@ const ARComponent = () => {
       avatar.scale.set(0.05, 0.05, 0.05);
       avatar.position.set(0, -0.25, 0);
       avatar.rotation.set(0, 0, 0);
+      //Fim teste
 
       // Add rotation animation
       avatar.rotation.x = Math.PI / 4;
