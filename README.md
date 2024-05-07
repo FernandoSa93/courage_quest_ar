@@ -33,5 +33,5 @@ Usar essa url no celular para realizar os testes em AR com a câmera.
 
 ## 4) Testes
 
-Até o momento, foi implementado o exemplo de multi-target do site da [MindAR](https://hiukim.github.io/mind-ar-js-doc/examples/multi-targets), utilizando o modelo do Raccoon, para realizar testes e entender melhor a ferramenta.
-Acessar o site deles e usar o card do Raccoon para testes.
+Até o momento, foi implementado o exemplo de multi-target do site da [MindAR](https://hiukim.github.io/mind-ar-js-doc/examples/multi-targets), utilizando os modelos do Bear e do Raccoon, para realizar testes e entender melhor a ferramenta.
+Acessar o site deles e usar o card dos dois para testes, ou utilizar os cards que estão na pasta src/mind/barata/assets.
