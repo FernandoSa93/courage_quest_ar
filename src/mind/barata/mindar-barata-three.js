@@ -3,16 +3,13 @@ import React, { useEffect, useRef } from 'react';
 import { MindARThree } from 'mind-ar/dist/mindar-image-three.prod.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-import Marcador from './assets/band.mind';
-import Modelo from './assets/raccoon/scene.gltf';
-
 const ARComponent = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
     const mindarThree = new MindARThree({
       container: containerRef.current,
-      imageTargetSrc: Marcador
+      imageTargetSrc: 'https://cdn.jsdelivr.net/gh/FernandoSa93/courage_quest_ar@main/src/mind/barata/assets/band.mind'
     });
 
     const { renderer, scene, camera } = mindarThree;
@@ -20,7 +17,7 @@ const ARComponent = () => {
 
     // Load GLTF model
     const loader = new GLTFLoader();
-    loader.load(Modelo, (gltf) => {
+    loader.load('https://cdn.jsdelivr.net/gh/FernandoSa93/courage_quest_ar@main/src/mind/barata/assets/raccoon/scene.gltf', (gltf) => {
       const avatar = gltf.scene;
 
       avatar.scale.set(0.05, 0.05, 0.05);

@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-//import MindARBarata from './mind/barata/mindar-barata-three';
 import MindARBarata from './mind/barata/mindar-barata';
 
 function App() {
