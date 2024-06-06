@@ -1,7 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import MindARBarata from './mind/barata/mindar-barata';
+import MindARBarata1 from './mind/barata/mindar-barata-lvl1';
+import MindARBarata2 from './mind/barata/mindar-barata-lvl2';
+import MindARBarata3 from './mind/barata/mindar-barata-lvl3';
 
 function App() {
 
@@ -10,16 +12,62 @@ function App() {
     { id: '2', image: '/static/images/aranha.png' }
   ];
 
-  const [ARstarted, setARStarted] = useState(null);
+  const [ModeloNivel2, setModeloNivel2] = useState(false);
+  const [ModeloNivel3, setModeloNivel3] = useState(false);
+
+  const [ARstarted, setARStarted] = useState(false);
   const [animalId, setAnimalId] = useState('barata');
 
+  const TempoProximoNivel = 15000; //15 segundos
+
+  //Método para controlar o nível atual do modelo
+  function subirNivelModelo() {
+    if (!ModeloNivel2) {
+      setModeloNivel2(true);
+      renderViewer();
+    } else {
+      setModeloNivel3(true);
+      renderViewer();
+    }
+  }
+
+  function redefinirVariaveis() {
+    setARStarted(false);
+    setModeloNivel2(false);
+    setModeloNivel3(false);
+  }
+
   const renderViewer = () => {
-    if (ARstarted === '1') {
-      return (
-        <div className="ARView">
-          <MindARBarata />
-        </div>
-      );
+    if (ARstarted) {
+      if (animalId === 'barata') {
+        if (!ModeloNivel2) {
+          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
+          return (
+            <div className="ARView">
+              <MindARBarata1 />
+              <video></video>
+            </div>
+          );
+        } else if (!ModeloNivel3) {
+          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
+          return (
+            <div className="ARView">
+              <MindARBarata2 />
+              <video></video>
+            </div>
+          );
+        } else {
+          return (
+            <div className="ARView">
+              <MindARBarata3 />
+              <video></video>
+            </div>
+          );
+        }
+      } else {
+        alert("Em construção!");
+        setARStarted(false);
+      }
     }
     return null;
   };
@@ -28,11 +76,11 @@ function App() {
     <div className="container">
       <h1 className="title">Courage Quest</h1>
 
-      {ARstarted === null && (
+      {!ARstarted && (
         <h2 className="subtitle">Selecione um animal:</h2>
       )}
 
-      {ARstarted === null && (
+      {!ARstarted && (
         <Swiper
           slidesPerView={1}
           pagination={{ clickable: true }}
@@ -50,15 +98,14 @@ function App() {
           ))}
         </Swiper>
       )}
-      {ARstarted !== null && renderViewer()}
+      {ARstarted && renderViewer()}
 
       <div className="control-buttons">
-        {ARstarted === null && (
-          <button className="buttonStart" onClick={() => setARStarted('1')}>INICIAR TRATAMENTO EM REALIDADE AUMENTADA</button>
+        {!ARstarted && (
+          <button className="buttonStart" onClick={() => setARStarted(true)}>INICIAR TRATAMENTO EM REALIDADE AUMENTADA</button>
         )}
-        {ARstarted !== null && <button className="buttonStop" onClick={() => setARStarted(null)}>PARAR TRATAMENTO EM REALIDADE AUMENTADA</button>}
+        {ARstarted && <button className="buttonStop" onClick={() => redefinirVariaveis()}>PARAR TRATAMENTO EM REALIDADE AUMENTADA</button>}
       </div>
-
     </div >
   );
 }
