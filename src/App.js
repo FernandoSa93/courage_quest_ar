@@ -6,9 +6,9 @@ import MindARBarata1 from './mind/barata/mindar-barata-lvl1';
 import MindARBarata2 from './mind/barata/mindar-barata-lvl2';
 import MindARBarata3 from './mind/barata/mindar-barata-lvl3';
 
-//import MindARAranha1 from './mind/aranha/mindar-aranha-lvl1';
-//import MindARAranha2 from './mind/aranha/mindar-aranha-lvl2';
-//import MindARAranha3 from './mind/aranha/mindar-aranha-lvl3';
+import MindARAranha1 from './mind/aranha/mindar-aranha-lvl1';
+import MindARAranha2 from './mind/aranha/mindar-aranha-lvl2';
+import MindARAranha3 from './mind/aranha/mindar-aranha-lvl3';
 
 function App() {
 
@@ -34,12 +34,6 @@ function App() {
       setModeloNivel3(true);
       renderViewer();
     }
-  }
-
-  function redefinirVariaveis() {
-    setARStarted(false);
-    setModeloNivel2(false);
-    setModeloNivel3(false);
   }
 
   const renderViewer = () => {
@@ -70,32 +64,30 @@ function App() {
           );
         }
       } else {
-        /* if (!ModeloNivel2) {
-           setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
-           return (
-             <div className="ARView">
-               <MindARAranha1 />
-               <video></video>
-             </div>
-           );
-         } else if (!ModeloNivel3) {
-           setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
-           return (
-             <div className="ARView">
-               <MindARAranha2 />
-               <video></video>
-             </div>
-           );
-         } else {
-           return (
-             <div className="ARView">
-               <MindARAranha3 />
-               <video></video>
-             </div>
-           );
-         }*/
-        alert("Em construção!");
-        setARStarted(false);
+        if (!ModeloNivel2) {
+          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
+          return (
+            <div className="ARView">
+              <MindARAranha1 />
+              <video></video>
+            </div>
+          );
+        } else if (!ModeloNivel3) {
+          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
+          return (
+            <div className="ARView">
+              <MindARAranha2 />
+              <video></video>
+            </div>
+          );
+        } else {
+          return (
+            <div className="ARView">
+              <MindARAranha3 />
+              <video></video>
+            </div>
+          );
+        }
       }
     }
     return null;
@@ -133,7 +125,7 @@ function App() {
         {!ARstarted && (
           <button className="buttonStart" onClick={() => setARStarted(true)}>INICIAR TRATAMENTO EM REALIDADE AUMENTADA</button>
         )}
-        {ARstarted && <button className="buttonStop" onClick={() => redefinirVariaveis()}>PARAR TRATAMENTO EM REALIDADE AUMENTADA</button>}
+        {ARstarted && <button className="buttonStop" onClick={() => window.location.reload(true)}>PARAR TRATAMENTO EM REALIDADE AUMENTADA</button>}
       </div>
     </div >
   );

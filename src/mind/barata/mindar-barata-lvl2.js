@@ -26,7 +26,7 @@ const ARComponent = () => {
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model rotation="180 180 0" position="0 -0.25 0" scale="15.0 15.0 12.0" src="#barata2" animation-mixer />
+        <a-gltf-model rotation="180 180 0" position="0 0 0" scale="15.0 15.0 12.0" src="#barata2" animation-mixer />
       </a-entity>
     </a-scene>
   );
