@@ -9,9 +9,18 @@ const ARComponent = () => {
   useEffect(() => {
     const sceneEl = sceneRef.current;
     const arSystem = sceneEl.systems["mindar-image-system"];
+
     sceneEl.addEventListener('renderstart', () => {
+      alert("Muito bem, você superou o primeiro desafio!\n\nAgora mantenha a calma, respire fundo e quando estiver pronto(a), feche esta mensagem para começar o nível 2.");
       arSystem.start(); // start AR 
     });
+
+    //Se perder o alvo de vista(Se assustou)
+    sceneEl.addEventListener("targetLost", () => {
+      alert("Ops, infelizmente você perdeu desta vez...\n\nMas não se preocupe, se acalme e tente novamente.\n\nBoa sorte na próxima!");
+      window.location.reload(true);
+    });
+
     return () => {
       arSystem.stop();
     }

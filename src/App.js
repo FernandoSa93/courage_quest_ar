@@ -24,35 +24,39 @@ function App() {
   const [animalId, setAnimalId] = useState('barata');
 
   const TempoProximoNivel = 15000; //15 segundos
+  const TempoUltimoNivel = 20000; //20 segundos
 
   //Método para controlar o nível atual do modelo
   function subirNivelModelo() {
     if (!ModeloNivel2) {
       setModeloNivel2(true);
-      renderViewer();
-    } else {
+    } else if (!ModeloNivel3) {
       setModeloNivel3(true);
-      renderViewer();
+    } else {
+      alert("Parabéns!\n\nVocê venceu todos os desafios do Courage Quest e superou seu medo de " + animalId + "s!");
+      window.location.reload(true);
     }
+
+    renderViewer();
   }
 
   const renderViewer = () => {
     if (ARstarted) {
       if (animalId === 'barata') {
         if (!ModeloNivel2) {
-          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
           return (
             <div className="ARView">
               <MindARBarata1 />
               <video></video>
+              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else if (!ModeloNivel3) {
-          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
           return (
             <div className="ARView">
               <MindARBarata2 />
               <video></video>
+              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else {
@@ -60,24 +64,25 @@ function App() {
             <div className="ARView">
               <MindARBarata3 />
               <video></video>
+              {setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
             </div>
           );
         }
       } else {
         if (!ModeloNivel2) {
-          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
           return (
             <div className="ARView">
               <MindARAranha1 />
               <video></video>
+              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else if (!ModeloNivel3) {
-          setTimeout(function () { subirNivelModelo() }, TempoProximoNivel);
           return (
             <div className="ARView">
               <MindARAranha2 />
               <video></video>
+              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else {
@@ -85,6 +90,7 @@ function App() {
             <div className="ARView">
               <MindARAranha3 />
               <video></video>
+              {setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
             </div>
           );
         }
