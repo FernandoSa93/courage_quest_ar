@@ -23,6 +23,8 @@ function App() {
   const [ARstarted, setARStarted] = useState(false);
   const [animalId, setAnimalId] = useState('barata');
 
+  const [EncontrouAlvo, setEncontrouAlvo] = useState(false);
+
   const TempoProximoNivel = 15000; //15 segundos
   const TempoUltimoNivel = 20000; //20 segundos
 
@@ -37,7 +39,15 @@ function App() {
       window.location.reload(true);
     }
 
+    setEncontrouAlvo(false);
+
     renderViewer();
+  }
+
+  //Método para receber do componente filho(modelos) o sinal
+  //de que o card foi localizado e então iniciar a contagem para o próximo nível
+  const definirEncontrouAlvo = (childdata) => {
+    setEncontrouAlvo(childdata);
   }
 
   const renderViewer = () => {
@@ -46,25 +56,25 @@ function App() {
         if (!ModeloNivel2) {
           return (
             <div className="ARView">
-              <MindARBarata1 />
+              <MindARBarata1 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
+              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else if (!ModeloNivel3) {
           return (
             <div className="ARView">
-              <MindARBarata2 />
+              <MindARBarata2 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
+              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else {
           return (
             <div className="ARView">
-              <MindARBarata3 />
+              <MindARBarata3 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
+              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
             </div>
           );
         }
@@ -72,25 +82,25 @@ function App() {
         if (!ModeloNivel2) {
           return (
             <div className="ARView">
-              <MindARAranha1 />
+              <MindARAranha1 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
+              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else if (!ModeloNivel3) {
           return (
             <div className="ARView">
-              <MindARAranha2 />
+              <MindARAranha2 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
+              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else {
           return (
             <div className="ARView">
-              <MindARAranha3 />
+              <MindARAranha3 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
+              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
             </div>
           );
         }

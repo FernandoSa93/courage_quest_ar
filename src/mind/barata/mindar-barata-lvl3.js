@@ -3,7 +3,7 @@ import 'aframe';
 import 'aframe-extras';
 import 'mind-ar/dist/mindar-image-aframe.prod.js';
 
-const ARComponent = () => {
+const ARComponent = ({ childToParent }) => {
   const sceneRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +15,11 @@ const ARComponent = () => {
       arSystem.start(); // start AR 
     });
 
+    //Se encontrou o alvo, envia o sinal para a aplicação iniciar a contagem para o próximo nível
+    sceneEl.addEventListener("targetFound", () => {
+      childToParent(true);
+    });
+
     //Se perder o alvo de vista(Se assustou)
     sceneEl.addEventListener("targetLost", () => {
       alert("Ops, infelizmente você perdeu desta vez...\n\nMas não se preocupe, se acalme e tente novamente.\n\nBoa sorte na próxima!");
@@ -24,6 +29,7 @@ const ARComponent = () => {
     return () => {
       arSystem.stop();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
