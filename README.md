@@ -1,6 +1,6 @@
 # React + JavaScript + MindAr
 
-O Courage Quest é um sistema gamificado para tratamento de fobias. 
+O Courage Quest é um sistema gamificado para tratamento de fobias.\n
 A ideia é que o usuário escolha o animal que lhe causa medo, podendo escolher entre barata ou aranha e através da utilização de um card que deve ser de preferência impresso e posto na palma da sua mão, ele deverá apontar a câmera do seu celular para o card e assim o modelo 3D do animal será exibido.
 Vence aquele que suportar os 3 níveis de exposição, começando com um modelo low poly no primeiro nível, seguindo para um modelo intermediário e por fim, um modelo realista do animal.
 Os dois primeiros níveis possuem duração de 15 segundos e o último nível possui 20 segundos.
