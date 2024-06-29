@@ -7,6 +7,7 @@ Os dois primeiros níveis possuem duração de 15 segundos e o último nível po
 Caso o usuário se assuste com o animal e o perca de vista na câmera, ocorre um game over e o processo deve ser reiniciado.
 
 Acesse o seguinte link com seu celular para iniciar o sistema e utilize o card abaixo para jogar: https://courage-quest.netlify.app
+
 <img src="/src/mind/card.jpeg">
 
 Para rodar(Ambiente de desenvolvimento):
