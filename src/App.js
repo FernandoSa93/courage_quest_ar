@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import MindARBarata1 from './mind/barata/mindar-barata-lvl1';
@@ -25,24 +25,44 @@ function App() {
 
   const [EncontrouAlvo, setEncontrouAlvo] = useState(false);
 
-  const TempoProximoNivel = 15000; //15 segundos
-  const TempoUltimoNivel = 20000; //20 segundos
+  const TempoProximoNivel = 15;
+  const TempoUltimoNivel = 20;
 
-  //Método para controlar o nível atual do modelo
-  function subirNivelModelo() {
-    if (!ModeloNivel2) {
-      setModeloNivel2(true);
-    } else if (!ModeloNivel3) {
-      setModeloNivel3(true);
-    } else {
-      alert("Parabéns!\n\nVocê venceu todos os desafios do Courage Quest e superou seu medo de " + animalId + "s!");
-      window.location.reload(true);
+  const [timer, setTimer] = useState(15);
+
+  //Método para controlar o timer e as fases
+  useEffect(() => {
+    if (EncontrouAlvo) {
+      const interval = setInterval(() => {
+        setTimer((prevTimer) => {
+          if (prevTimer === 0) { // quando timer chega a 0, define a próxima fase
+            if (!ModeloNivel2) {
+              setModeloNivel2(true);
+            } else if (!ModeloNivel3) {
+              setModeloNivel3(true);
+            } else {
+              alert("Parabéns!\n\nVocê venceu todos os desafios do Courage Quest e superou seu medo de " + animalId + "s!");
+              window.location.reload(true);
+            }
+
+            setEncontrouAlvo(false);
+
+            renderViewer();
+
+            if (ModeloNivel2) {
+              return TempoUltimoNivel;
+            } else {
+              return TempoProximoNivel;
+            }
+          } else {
+            return prevTimer - 1; // enquanto timer nao chega a 0 ele continua decrementando
+          }
+        });
+      }, 1000);
+      return () => clearInterval(interval);
     }
-
-    setEncontrouAlvo(false);
-
-    renderViewer();
-  }
+    // eslint-disable-next-line
+  }, [EncontrouAlvo]); // quando EncontrouAlvo muda, useEffect é ativado
 
   //Método para receber do componente filho(modelos) o sinal
   //de que o card foi localizado e então iniciar a contagem para o próximo nível
@@ -50,6 +70,7 @@ function App() {
     setEncontrouAlvo(childdata);
   }
 
+  //Método para carregar os componentes do mind na tela
   const renderViewer = () => {
     if (ARstarted) {
       if (animalId === 'barata') {
@@ -58,7 +79,6 @@ function App() {
             <div className="ARView">
               <MindARBarata1 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else if (!ModeloNivel3) {
@@ -66,7 +86,6 @@ function App() {
             <div className="ARView">
               <MindARBarata2 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else {
@@ -74,7 +93,6 @@ function App() {
             <div className="ARView">
               <MindARBarata3 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
             </div>
           );
         }
@@ -84,7 +102,6 @@ function App() {
             <div className="ARView">
               <MindARAranha1 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else if (!ModeloNivel3) {
@@ -92,7 +109,6 @@ function App() {
             <div className="ARView">
               <MindARAranha2 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoProximoNivel)}
             </div>
           );
         } else {
@@ -100,7 +116,6 @@ function App() {
             <div className="ARView">
               <MindARAranha3 childToParent={definirEncontrouAlvo} />
               <video></video>
-              {EncontrouAlvo && setTimeout(function () { subirNivelModelo() }, TempoUltimoNivel)}
             </div>
           );
         }
@@ -111,11 +126,15 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="title">Courage Quest</h1>
+      {!ARstarted && (<h1 className="title">Courage Quest</h1>)}
+      {ARstarted && (<h1 className="title2">Courage Quest</h1>)}
 
       {!ARstarted && (
         <h2 className="subtitle">Selecione um animal:</h2>
       )}
+
+      {ARstarted && !EncontrouAlvo && (<h2 className="timer">Aponte a câmera para o card</h2>)}
+      {ARstarted && EncontrouAlvo && (<h2 className="timer">Tempo restante: {timer} segundos</h2>)}
 
       {!ARstarted && (
         <Swiper
